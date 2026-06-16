@@ -1,0 +1,7 @@
+{
+  "name": "RennetMajestic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
