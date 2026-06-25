@@ -1,0 +1,109 @@
+<ion-content class="preorder-content">
+
+  <div class="preorder-container">
+
+    <!-- Header Section -->
+    <header class="preorder-header">
+      <button class="back-btn" (click)="goBack()" aria-label="Go Back">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </button>
+      <h1 class="header-title">Preorder</h1>
+      <div style="width: 38px;"></div> <!-- Spacer to center the title -->
+    </header>
+
+    <!-- Product Summary Card -->
+    <div class="product-summary-card">
+      <div class="product-img-wrap">
+        <img src="assets/rennect_swipe_image.jpg" alt="Rennect Smart Tracker Shoe" class="product-img">
+      </div>
+      <div class="product-text-details">
+        <h2 class="product-name">Rennect Smart Tracker Shoe</h2>
+        <span class="product-edition">Midnight Black Edition</span>
+      </div>
+    </div>
+
+    <!-- Size Selection Section -->
+    <div class="selection-section">
+      <div class="section-label-row">
+        <span class="section-label">SELECT KID'S SIZE</span>
+        <a class="size-guide-link">Size Guide</a>
+      </div>
+      <div class="sizes-grid">
+        <button 
+          *ngFor="let size of sizes" 
+          [class.active]="selectedSize === size"
+          (click)="selectSize(size)"
+          class="size-btn">
+          {{ size }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Quantity Section -->
+    <div class="quantity-section">
+      <span class="section-label">QUANTITY</span>
+      <div class="quantity-controls">
+        <button class="qty-btn" (click)="decreaseQty()" aria-label="Decrease Quantity">
+          <ion-icon name="remove-outline"></ion-icon>
+        </button>
+        <span class="qty-val">{{ quantity }}</span>
+        <button class="qty-btn" (click)="increaseQty()" aria-label="Increase Quantity">
+          <ion-icon name="add-outline"></ion-icon>
+        </button>
+      </div>
+    </div>
+
+    <!-- Pricing Summary Card -->
+    <div class="pricing-card">
+      <div class="price-row">
+        <span class="price-label">Preorder Deposit</span>
+        <span class="price-val">₹{{ depositPrice * quantity }}.00</span>
+      </div>
+      <div class="price-row">
+        <span class="price-label">Estimated Shipping</span>
+        <span class="price-val shipping-time">October 2024</span>
+      </div>
+      
+      <div class="price-divider"></div>
+      
+      <div class="price-row total-row">
+        <span class="price-label">Total Due Today</span>
+        <span class="price-val total-val">₹{{ totalPrice }}.00</span>
+      </div>
+
+      <div class="badge-row">
+        <div class="shipment-badge">
+          <ion-icon name="chevron-forward-outline" class="badge-icon"></ion-icon>
+          BATCH 1 SHIPMENTS
+        </div>
+      </div>
+    </div>
+
+    <!-- Priority Access Alert -->
+    <div class="priority-access-card">
+      <div class="priority-icon-wrap">
+        <ion-icon name="shield-checkmark-outline"></ion-icon>
+      </div>
+      <div class="priority-text">
+        <h3 class="priority-title">Priority Access</h3>
+        <p class="priority-desc">
+          You're reserving units from our first production run. Batch 1 units include the exclusive Founders Edition app badge.
+        </p>
+      </div>
+    </div>
+
+    <!-- Action Button & Footer -->
+    <div class="action-footer">
+      <button class="reserve-btn" (click)="reserveNow()">
+        Reserve Now
+      </button>
+      
+      <div class="security-note">
+        <ion-icon name="lock-closed-outline" class="lock-icon"></ion-icon>
+        <span>SECURE CHECKOUT POWERED BY STRIPE — CANCEL ANYTIME BEFORE SHIPMENT</span>
+      </div>
+    </div>
+
+  </div>
+
+</ion-content>

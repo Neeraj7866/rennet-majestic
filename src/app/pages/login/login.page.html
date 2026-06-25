@@ -1,0 +1,81 @@
+<ion-content class="login-content">
+
+  <div class="login-container">
+
+    <!-- Logo -->
+    <div class="logo-section">
+      <img src="assets/logo.png" alt="Rennect Logo" class="app-logo">
+    </div>
+
+    <!-- Title -->
+    <h2 class="title">Login <span class="text-lavender">To</span><br><span class="text-magenta">Your</span> Account</h2>
+
+    <!-- Email -->
+    <div class="input-group">
+      <label>EMAIL ADDRESS</label>
+      <ion-item lines="none" class="custom-input-item">
+        <ion-icon name="mail-outline" slot="start" class="input-icon"></ion-icon>
+        <ion-input
+          type="email"
+          placeholder="alexander@example.com"
+          [(ngModel)]="email">
+        </ion-input>
+      </ion-item>
+    </div>
+
+    <!-- Password -->
+    <div class="input-group">
+      <label>PASSWORD</label>
+      <ion-item lines="none" class="custom-input-item">
+        <ion-icon name="lock-closed-outline" slot="start" class="input-icon"></ion-icon>
+        <ion-input
+          [type]="showPassword ? 'text' : 'password'"
+          placeholder="********"
+          [(ngModel)]="password">
+        </ion-input>
+        <ion-button fill="clear" slot="end" class="toggle-password-btn" (click)="togglePassword()">
+          <ion-icon [name]="showPassword ? 'eye-outline' : 'eye-off-outline'"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </div>
+
+    <!-- Options -->
+    <div class="options">
+      <a class="forgot-link">Forgot Password?</a>
+
+      <div class="remember">
+        <ion-checkbox [(ngModel)]="rememberMe" class="custom-checkbox"></ion-checkbox>
+        <span>Remember me</span>
+      </div>
+    </div>
+
+    <!-- Login Button -->
+    <ion-button expand="block" class="login-btn" (click)="login()">
+      Log In
+    </ion-button>
+
+    <!-- Divider -->
+    <div class="divider">
+      <span>OR</span>
+    </div>
+
+    <!-- Social Login -->
+    <div class="social-icons">
+      <ion-button fill="clear" class="social-btn">
+        <img src="assets/google-logo.svg" alt="Google" class="social-img-icon">
+      </ion-button>
+
+      <ion-button fill="clear" class="social-btn">
+        <ion-icon name="logo-apple"></ion-icon>
+      </ion-button>
+    </div>
+
+    <!-- Signup -->
+    <p class="signup">
+      Don't have an account?
+      <a routerLink="/signup">Sign up</a>
+    </p>
+
+  </div>
+
+</ion-content>

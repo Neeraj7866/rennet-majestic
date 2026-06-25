@@ -1,0 +1,392 @@
+.preorder-content {
+  --background: radial-gradient(circle at 10% 10%, rgba(171, 75, 253, 0.14) 0%, transparent 45%),
+                radial-gradient(circle at 90% 20%, rgba(248, 87, 166, 0.1) 0%, transparent 45%),
+                radial-gradient(circle at 50% 80%, rgba(171, 75, 253, 0.08) 0%, transparent 50%),
+                linear-gradient(180deg, #170026 0%, #06000c 100%);
+  --padding-top: var(--ion-safe-area-top);
+  --padding-bottom: var(--ion-safe-area-bottom);
+}
+
+.preorder-container {
+  padding: 16px 24px 30px;
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-sizing: border-box;
+}
+
+// 1. Header Section
+.preorder-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 5px;
+
+  .back-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: scale(1.05);
+    }
+  }
+
+  .header-title {
+    font-size: 19px;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: 0.5px;
+    color: #ffffff;
+  }
+}
+
+// 2. Product Summary Card
+.product-summary-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 18px;
+  padding: 14px 16px;
+  backdrop-filter: blur(10px);
+
+  .product-img-wrap {
+    width: 66px;
+    height: 66px;
+    border-radius: 50%;
+    background: #ffffff;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+    .product-img {
+      width: 90%;
+      height: 90%;
+      object-fit: contain;
+    }
+  }
+
+  .product-text-details {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+
+    .product-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: #ffffff;
+      margin: 0;
+    }
+
+    .product-edition {
+      font-size: 12.5px;
+      color: rgba(255, 255, 255, 0.5);
+      font-weight: 450;
+    }
+  }
+}
+
+// 3. Selection Labels & Layout
+.selection-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.section-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.section-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.size-guide-link {
+  font-size: 11px;
+  font-weight: 600;
+  color: #ff56ab;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// 4. Sizes Grid / Row
+.sizes-grid {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+
+  .size-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.03);
+    color: white;
+    font-size: 14.5px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover {
+      border-color: rgba(255, 255, 255, 0.4);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    &.active {
+      border-color: #b76eff;
+      background: rgba(171, 75, 253, 0.15);
+      box-shadow: 0 0 14px rgba(171, 75, 253, 0.5);
+      font-weight: 700;
+      transform: scale(1.05);
+    }
+  }
+}
+
+// 5. Quantity Controls Layout
+.quantity-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .quantity-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 140px;
+    height: 42px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 25px;
+    padding: 0 8px;
+    box-sizing: border-box;
+
+    .qty-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: transparent;
+      border: none;
+      color: #ff56ab;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s ease;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      &:active {
+        transform: scale(0.9);
+      }
+    }
+
+    .qty-val {
+      font-size: 15px;
+      font-weight: 700;
+      color: white;
+    }
+  }
+}
+
+// 6. Pricing Card Section
+.pricing-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  backdrop-filter: blur(10px);
+
+  .price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .price-label {
+      font-size: 13.5px;
+      color: rgba(255, 255, 255, 0.6);
+      font-weight: 450;
+    }
+
+    .price-val {
+      font-size: 14px;
+      color: white;
+      font-weight: 600;
+
+      &.shipping-time {
+        color: rgba(255, 255, 255, 0.7);
+        font-weight: 500;
+      }
+    }
+
+    &.total-row {
+      margin-top: 2px;
+
+      .price-label {
+        font-size: 15.5px;
+        color: white;
+        font-weight: 600;
+      }
+
+      .total-val {
+        font-size: 20px;
+        font-weight: 700;
+        color: #ff56ab;
+        text-shadow: 0 0 10px rgba(255, 86, 171, 0.25);
+      }
+    }
+  }
+
+  .price-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    width: 100%;
+  }
+
+  .badge-row {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 4px;
+  }
+
+  .shipment-badge {
+    background: rgba(171, 75, 253, 0.1);
+    border: 1px solid rgba(171, 75, 253, 0.3);
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 9.5px;
+    font-weight: 700;
+    color: #dfd7ff;
+    letter-spacing: 0.8px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    .badge-icon {
+      font-size: 11px;
+    }
+  }
+}
+
+// 7. Priority Access Banner
+.priority-access-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 5px;
+
+  .priority-icon-wrap {
+    font-size: 20px;
+    color: #4cd964;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+  }
+
+  .priority-text {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+
+    .priority-title {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: white;
+      margin: 0;
+    }
+
+    .priority-desc {
+      font-size: 11.5px;
+      color: rgba(255, 255, 255, 0.5);
+      line-height: 1.45;
+      margin: 0;
+    }
+  }
+}
+
+// 8. Footer & Reserve Button
+.action-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: auto;
+  align-items: center;
+
+  .reserve-btn {
+    width: 100%;
+    height: 48px;
+    background: linear-gradient(90deg, #ab4bfd 0%, #ff56ab 100%);
+    border: none;
+    border-radius: 24px;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(255, 86, 171, 0.25);
+    transition: all 0.25s ease;
+
+    &:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 22px rgba(255, 86, 171, 0.35);
+    }
+
+    &:active {
+      transform: translateY(1px);
+    }
+  }
+
+  .security-note {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 9px;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.4px;
+    text-align: center;
+
+    .lock-icon {
+      font-size: 10px;
+    }
+  }
+}

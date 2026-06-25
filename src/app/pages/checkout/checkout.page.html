@@ -1,0 +1,171 @@
+<ion-content class="checkout-content">
+
+  <div class="checkout-container">
+
+    <!-- Header Section -->
+    <header class="checkout-header">
+      <button class="back-btn" (click)="goBack()" aria-label="Go Back">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </button>
+      <h1 class="header-title">Checkout Details</h1>
+      <div style="width: 38px;"></div> <!-- Spacer to center the title -->
+    </header>
+
+    <!-- Main Preorder Form Card -->
+    <div class="checkout-card">
+      
+      <!-- Preorder Form Title Block -->
+      <div class="form-title-block">
+        <div class="checklist-icon-wrap">
+          <ion-icon name="clipboard-outline"></ion-icon>
+        </div>
+        <div class="form-title-text">
+          <h2 class="form-title">Preorder form</h2>
+          <p class="form-subtitle">Fill in the details below to reserve your pair</p>
+        </div>
+      </div>
+
+      <!-- Section 1: Personal Details -->
+      <div class="form-section">
+        <span class="section-heading">1. Personal Details</span>
+        
+        <div class="input-group">
+          <label class="input-label">FULL NAME</label>
+          <div class="custom-input-box">
+            <ion-icon name="person-outline" class="input-icon"></ion-icon>
+            <input 
+              type="text" 
+              placeholder="Alexander Vance" 
+              [(ngModel)]="fullName" 
+              required
+              class="form-input">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label class="input-label">EMAIL ADDRESS</label>
+          <div class="custom-input-box">
+            <ion-icon name="mail-outline" class="input-icon"></ion-icon>
+            <input 
+              type="email" 
+              placeholder="alexander@example.com" 
+              [(ngModel)]="email" 
+              required
+              class="form-input">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label class="input-label">PHONE NO.</label>
+          <div class="custom-input-box">
+            <ion-icon name="call-outline" class="input-icon"></ion-icon>
+            <input 
+              type="tel" 
+              placeholder="9894712363" 
+              [(ngModel)]="phone" 
+              required
+              class="form-input">
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Product Details -->
+      <div class="form-section">
+        <span class="section-heading">2. Product Details</span>
+        
+        <div class="dropdown-row">
+          <div class="input-group half-width">
+            <label class="input-label">SHOE SIZE</label>
+            <div class="custom-input-box select-box">
+              <select [(ngModel)]="selectedSize" required class="form-select-elem">
+                <option *ngFor="let size of sizes" [value]="size">Size {{ size }}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="input-group half-width">
+            <label class="input-label">QUANTITY</label>
+            <div class="custom-input-box select-box">
+              <select [(ngModel)]="quantity" required class="form-select-elem">
+                <option *ngFor="let qty of quantities" [value]="qty">{{ qty }}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Delivery Information -->
+      <div class="form-section">
+        <span class="section-heading">3. Delivery Information</span>
+
+        <div class="input-group">
+          <label class="input-label">ADDRESS</label>
+          <div class="custom-input-box">
+            <ion-icon name="location-outline" class="input-icon"></ion-icon>
+            <input 
+              type="text" 
+              placeholder="C-25 vijay vihar colony" 
+              [(ngModel)]="address" 
+              required
+              class="form-input">
+          </div>
+        </div>
+
+        <div class="dropdown-row">
+          <div class="input-group half-width">
+            <div class="custom-input-box select-box">
+              <select [(ngModel)]="city" required class="form-select-elem">
+                <option value="" disabled selected hidden>Select City</option>
+                <option *ngFor="let item of cities" [value]="item">{{ item }}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="input-group half-width">
+            <div class="custom-input-box select-box">
+              <select [(ngModel)]="state" required class="form-select-elem">
+                <option value="" disabled selected hidden>Select State</option>
+                <option *ngFor="let item of states" [value]="item">{{ item }}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label class="input-label">ZIP CODE</label>
+          <div class="custom-input-box">
+            <ion-icon name="pin-outline" class="input-icon"></ion-icon>
+            <input 
+              type="text" 
+              placeholder="302012" 
+              [(ngModel)]="zip" 
+              required
+              class="form-input">
+          </div>
+        </div>
+      </div>
+
+      <!-- Terms & Conditions Checkbox -->
+      <div class="agreement-row">
+        <label class="checkbox-container">
+          <input type="checkbox" [(ngModel)]="agree" required>
+          <span class="checkmark"></span>
+        </label>
+        <span class="agreement-text">
+          I agree to the <a class="violet-link">Terms & Conditions</a> & <a class="violet-link">Privacy Policy</a>.
+        </span>
+      </div>
+
+      <!-- Checkout Action Button -->
+      <div class="action-wrap">
+        <button class="pay-btn" (click)="payNow()">
+          Pay Now
+        </button>
+        <p class="form-footnote">Secure your pair before they're gone.</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</ion-content>

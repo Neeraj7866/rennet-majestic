@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ab4bfd" />
+      <stop offset="100%" stop-color="#f857a6" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Dotted path from bottom left -->
+  <path d="M 18 90 Q 35 98, 44 80 T 52 64" fill="none" stroke="rgba(255, 255, 255, 0.4)" stroke-width="2" stroke-dasharray="3,4" stroke-linecap="round"/>
+  <circle cx="18" cy="90" r="3" fill="#f857a6" opacity="0.8"/>
+
+  <!-- Badge background (shield/location-pin) -->
+  <path d="M 70 24 C 85 24, 98 37, 98 53 C 98 75, 70 96, 70 96 C 70 96, 42 75, 42 53 C 42 37, 55 24, 70 24 Z" 
+        fill="url(#logoGrad)" stroke="#ffffff" stroke-width="2.5" filter="drop-shadow(0px 4px 10px rgba(171, 75, 253, 0.4))" />
+
+  <!-- Sneaker graphic inside badge -->
+  <!-- Sole -->
+  <path d="M 52 64 C 58 55, 68 53, 84 56 C 88 57, 86 61, 82 62 C 75 64, 66 65, 54 65 C 51 65, 50 64, 52 64 Z" fill="#ffffff" />
+  <!-- Upper body of shoe -->
+  <path d="M 54 63 C 54 63, 58 50, 68 49 C 74 49, 78 53, 84 56 C 84 56, 81 60, 77 61 C 72 62, 65 63, 54 63 Z" fill="rgba(255,255,255,0.85)" />
+  <!-- Sole detail stripe -->
+  <path d="M 54 63.8 C 64 64.5, 74 63.8, 83.5 60.5" fill="none" stroke="#6b12a3" stroke-width="1.2" stroke-linecap="round" />
+  <!-- Shoe laces / dynamic stripes -->
+  <path d="M 66 52 L 62 58 M 70 53 L 66 59 M 74 54 L 70 60" fill="none" stroke="#6b12a3" stroke-width="1.2" stroke-linecap="round" />
+
+  <!-- Wireless/WiFi broadcast waves at top-right -->
+  <path d="M 85 43 A 8 8 0 0 1 95 49" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M 89 37 A 14 14 0 0 1 103 48" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M 93 31 A 20 20 0 0 1 110 47" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" opacity="0.8"/>
+</svg>

@@ -1,0 +1,130 @@
+<ion-content class="home-content">
+
+  <div class="home-container">
+
+    <!-- 1. Header Section -->
+    <header class="logo-section">
+      <h1 class="page-title">Home Page</h1>
+    </header>
+
+    <!-- 2. Grid: Features and Carousel Slider -->
+    <div class="hero-grid">
+      
+      <!-- Column 1: Left Features -->
+      <div class="features-col left-features">
+        <div class="feature-item" id="feat-gps">
+          <div class="feature-icon-wrap">
+            <ion-icon name="location-outline"></ion-icon>
+          </div>
+          <span class="feature-label">REAL-TIME<br>GPS</span>
+        </div>
+        
+        <div class="feature-item" id="feat-battery">
+          <div class="feature-icon-wrap">
+            <ion-icon name="flash-outline"></ion-icon>
+          </div>
+          <span class="feature-label">LONG BATTERY</span>
+        </div>
+      </div>
+
+      <!-- Column 2: Carousel Box -->
+      <div class="carousel-box">
+        
+        <div class="slider-wrapper">
+          <button class="nav-arrow left" (click)="prevSlide()" id="btn-prev-slide" aria-label="Previous Slide">
+            <ion-icon name="chevron-back-outline"></ion-icon>
+          </button>
+          
+          <div class="slide-card" [class.is-thumb]="slides[currentSlide].type === 'thumb'">
+            <img [src]="slides[currentSlide].image" [alt]="slides[currentSlide].name" class="slide-img" id="img-active-slide">
+          </div>
+          
+          <button class="nav-arrow right" (click)="nextSlide()" id="btn-next-slide" aria-label="Next Slide">
+            <ion-icon name="chevron-forward-outline"></ion-icon>
+          </button>
+        </div>
+
+        <!-- Thumbnails Row -->
+        <div class="thumbnails-row">
+          <div class="thumb-card"
+               *ngFor="let slide of slides; let i = index"
+               [class.active]="currentSlide === i"
+               (click)="selectSlide(i)"
+               [id]="'thumb-btn-' + i">
+            <img [src]="slide.image" [alt]="slide.name" class="thumb-img">
+          </div>
+        </div>
+
+        <!-- Pagination Dots (Indicator) -->
+        <div class="dots-row">
+          <span class="dot"
+                *ngFor="let dot of slides; let i = index"
+                [class.active]="currentSlide === i"
+                (click)="selectSlide(i)"
+                [id]="'dot-btn-' + i"></span>
+        </div>
+
+      </div>
+
+      <!-- Column 3: Right Features -->
+      <div class="features-col right-features">
+        <div class="feature-item" id="feat-waterproof">
+          <div class="feature-icon-wrap">
+            <ion-icon name="water-outline"></ion-icon>
+          </div>
+          <span class="feature-label">WATERPROOF</span>
+        </div>
+        
+        <div class="feature-item" id="feat-lining">
+          <div class="feature-icon-wrap">
+            <ion-icon name="shield-outline"></ion-icon>
+          </div>
+          <span class="feature-label">SECURE LINING</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 3. Product Titles & Badges -->
+    <div class="product-info-block">
+      <span class="new-arrival-badge">NEW ARRIVAL</span>
+      <h2 class="product-title">Rennect Smart Tracker Kid's Shoe</h2>
+    </div>
+
+    <!-- 4. Video Player Section -->
+    <div class="video-section">
+      <h3 class="video-heading">See it in Action</h3>
+      
+      <div class="video-container" id="video-player-container">
+        
+        <!-- Video Thumbnail / Cover -->
+        <div class="video-thumbnail-wrap" *ngIf="!isPlayingVideo" (click)="playVideo()" id="video-thumbnail-btn">
+          <img src="assets/video_banner.png" alt="Video Thumbnail" class="video-thumbnail-img">
+        </div>
+
+        <!-- YouTube Video Playback Iframe -->
+        <div class="video-iframe-wrap" *ngIf="isPlayingVideo">
+          <iframe [src]="safeVideoUrl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="video-iframe"></iframe>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 5. Inline Preorder Section -->
+    <div class="preorder-card-inline">
+      <div class="price-preorder-row">
+        <div class="price-info">
+          <span class="deposit-label">Deposit:</span>
+          <span class="deposit-val">₹99.00</span>
+        </div>
+        <button class="preorder-btn" id="btn-preorder" routerLink="/preorder">
+          <ion-icon name="cart-outline" class="cart-btn-icon"></ion-icon>
+          Preorder Now
+        </button>
+      </div>
+      <p class="release-note">Limited early release - secure your pair today</p>
+    </div>
+
+  </div>
+
+</ion-content>
