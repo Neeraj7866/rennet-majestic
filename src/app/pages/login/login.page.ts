@@ -13,6 +13,13 @@ import {
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { mailOutline, lockClosedOutline, eyeOutline, eyeOffOutline, logoApple } from 'ionicons/icons';
+import {
+  Auth,
+  GoogleAuthProvider,
+  signInWithPopup
+} from '@angular/fire/auth';
+
+
 
 @Component({
   selector: 'app-login',
@@ -39,7 +46,8 @@ export class LoginPage implements OnInit {
 
   constructor(
     private router: Router,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private auth: Auth
   ) {
     addIcons({ mailOutline, lockClosedOutline, eyeOutline, eyeOffOutline, logoApple });
   }
@@ -50,6 +58,40 @@ export class LoginPage implements OnInit {
   togglePassword() {
     this.showPassword = !this.showPassword;
   }
+  async googleLogin() {
+  try {
+    const provider = new GoogleAuthProvider();
+
+    provider.setCustomParameters({
+      prompt: 'select_account'
+    });
+
+    const result = await signInWithPopup(this.auth, provider);
+
+    console.log(result.user);
+
+    const toast = await this.toastController.create({
+      message: `Welcome ${result.user.displayName}`,
+      duration: 2000,
+      color: 'success'
+    });
+
+    await toast.present();
+
+    this.router.navigate(['/home']);
+
+  } catch (error) {
+    console.error(error);
+
+    const toast = await this.toastController.create({
+      message: 'Google Login Failed',
+      duration: 2000,
+      color: 'danger'
+    });
+
+    await toast.present();
+  }
+}
 
   async login() {
     if (!this.email || !this.password) {

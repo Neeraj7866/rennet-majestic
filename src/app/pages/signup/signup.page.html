@@ -65,9 +65,17 @@
 
     <!-- Social Login -->
     <div class="social-icons">
-      <ion-button fill="clear" class="social-btn">
-        <img src="assets/google-logo.svg" alt="Google" class="social-img-icon">
-      </ion-button>
+      <ion-button
+  fill="clear"
+  class="social-btn"
+  (click)="googleSignup()"
+>
+  <img
+    src="assets/google-logo.svg"
+    alt="Google"
+    class="social-img-icon"
+  >
+</ion-button>
 
       <ion-button fill="clear" class="social-btn">
         <ion-icon name="logo-apple"></ion-icon>
