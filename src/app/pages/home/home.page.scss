@@ -1,25 +1,23 @@
 .home-content {
   --background: radial-gradient(circle at 10% 10%, rgba(171, 75, 253, 0.14) 0%, transparent 45%),
-                radial-gradient(circle at 90% 20%, rgba(248, 87, 166, 0.1) 0%, transparent 45%),
-                radial-gradient(circle at 50% 80%, rgba(171, 75, 253, 0.08) 0%, transparent 50%),
-                linear-gradient(180deg, #170026 0%, #06000c 100%);
+    radial-gradient(circle at 90% 20%, rgba(248, 87, 166, 0.1) 0%, transparent 45%),
+    radial-gradient(circle at 50% 80%, rgba(171, 75, 253, 0.08) 0%, transparent 50%),
+    linear-gradient(180deg, #170026 0%, #06000c 100%);
   --padding-top: var(--ion-safe-area-top);
-  --padding-bottom: 0;
-  --overflow: hidden; // Disable scrollbars inside ion-content to lock inside a single viewport
+  --padding-bottom: var(--ion-safe-area-bottom);
 }
 
 // Global container
 .home-container {
-  padding: 16px 20px 24px;
+  padding: 16px 20px 145px;
   max-width: 480px;
   margin: 0 auto;
-  height: 100%; // Exactly viewport height
+  min-height: 100%;
   color: white;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; // Space items out uniformly to fill the page exactly
+  gap: 24px;
   box-sizing: border-box;
-  overflow: hidden;
 }
 
 // Logo Header
@@ -42,28 +40,44 @@
 
 // Carousel and Side Features Grid
 .hero-grid {
-  display: grid;
-  grid-template-columns: 75px 1fr 75px; // Reduced side columns to enlarge shoe card!
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
+  position: relative;
   width: 100%;
   margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
 }
 
 .features-col {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 75px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   height: 100%;
-  align-self: stretch; // Match card height
+  z-index: 15;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.92);
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1), transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+  }
 
   &.left-features {
+    left: 20px;
     align-items: center;
     text-align: center;
   }
 
   &.right-features {
+    right: 20px;
     align-items: center;
     text-align: center;
   }
@@ -144,7 +158,7 @@
 
 .slider-wrapper {
   position: relative;
-  width: 100%;
+  width: 95%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -190,35 +204,48 @@
 // Main Card Frame
 .slide-card {
   width: 100%;
-  aspect-ratio: 464 / 345; // Increased visual slider card size!
-  background: radial-gradient(circle at center, #ffffff 0%, #D4DAE3 100%);
+  aspect-ratio: 464 / 320;
+  background: radial-gradient(circle at center, #ffffff 0%, #E6ECF5 100%);
   border-radius: 20px;
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   position: relative;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 
   .slide-img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), filter 0.4s ease;
-    transform: scale(1.2); // Zoomed-in shoe inside the main card view!
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+    transform: scale(1.2); // Aligned shoe size for all slides!
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.15)); // Soft shadow under shoe on standard slides
   }
 
-  &.is-thumb {
-    background: radial-gradient(circle at center, #f5f7fa 0%, #c4ccd9 100%);
+  // Feature slide (2nd slide) matches the card look in the screenshot exactly
+  &.is-feature-slide {
     .slide-img {
-      width: 85%;
-      height: 85%;
-      object-fit: contain;
-      transform: scale(1.4); // Standard zoom for thumbnails
-      filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.2));
+      transform: scale(1.2); // Aligned shoe size matching slide card boundary!
+      filter: drop-shadow(0 14px 18px rgba(171, 75, 253, 0.5)); // Mockup's purple neon shadow glow!
+    }
+
+    // Mockup white theme override for feature columns
+    .feature-item {
+      .feature-icon-wrap {
+        background: #ffffff;
+        border: 1.5px solid #ab4bfd;
+        color: #ab4bfd;
+        box-shadow: 0 4px 12px rgba(171, 75, 253, 0.12);
+      }
+
+      .feature-label {
+        color: #1a0033; // Dark purple text color matching mockup layout
+        font-weight: 700;
+      }
     }
   }
 
@@ -384,13 +411,25 @@
 
 // Inline Preorder Card
 .preorder-card-inline {
-  display: block;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  padding: 12px 16px;
-  backdrop-filter: blur(12px);
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
+  max-width: 480px;
+  background: rgba(23, 5, 37, 0.95);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  border-radius: 20px 20px 0 0;
+  padding: 16px 20px 24px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  z-index: 1000;
+  display: block;
   margin: 0;
 
   .price-preorder-row {
@@ -464,5 +503,64 @@
 @media (min-width: 768px) {
   .logo-section {
     margin-bottom: 12px;
+  }
+}
+
+// Pricing Card Section (Moved from preorder page)
+.pricing-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  backdrop-filter: blur(10px);
+  box-sizing: border-box;
+
+  .price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .price-label {
+      font-size: 13.5px;
+      color: rgba(255, 255, 255, 0.6);
+      font-weight: 450;
+    }
+
+    .price-val {
+      font-size: 14px;
+      color: white;
+      font-weight: 600;
+
+      &.shipping-time {
+        color: rgba(255, 255, 255, 0.7);
+        font-weight: 500;
+      }
+    }
+
+    &.total-row {
+      margin-top: 2px;
+
+      .price-label {
+        font-size: 15.5px;
+        color: white;
+        font-weight: 600;
+      }
+
+      .total-val {
+        font-size: 20px;
+        font-weight: 700;
+        color: #ff56ab;
+        text-shadow: 0 0 10px rgba(255, 86, 171, 0.25);
+      }
+    }
+  }
+
+  .price-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    width: 100%;
   }
 }

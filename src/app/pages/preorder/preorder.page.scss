@@ -8,7 +8,7 @@
 }
 
 .preorder-container {
-  padding: 16px 24px 30px;
+  padding: 16px 24px 150px;
   max-width: 480px;
   margin: 0 auto;
   min-height: 100%;
@@ -236,6 +236,23 @@
   gap: 14px;
   backdrop-filter: blur(10px);
 
+  &.compact-pricing-card {
+    padding: 16px 20px;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(171, 75, 253, 0.08) 0%, rgba(255, 86, 171, 0.08) 100%);
+    border: 1.5px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .preorder-promo-label {
+    font-size: 17px;
+    font-weight: 700;
+    color: #ff56ab;
+    text-shadow: 0 0 12px rgba(255, 86, 171, 0.4);
+    letter-spacing: 0.5px;
+    text-align: center;
+  }
+
   .price-row {
     display: flex;
     justify-content: space-between;
@@ -346,10 +363,24 @@
 
 // 8. Footer & Reserve Button
 .action-footer {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  background: rgba(23, 5, 37, 0.95);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px 20px 0 0;
+  padding: 16px 24px 24px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  z-index: 1000;
   display: flex;
   flex-direction: column;
   gap: 14px;
-  margin-top: auto;
   align-items: center;
 
   .reserve-btn {
@@ -388,5 +419,228 @@
     .lock-icon {
       font-size: 10px;
     }
+  }
+}
+
+// 9. Size Guide Modal Styles
+.size-guide-modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 16px;
+  box-sizing: border-box;
+
+  .modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 2, 22, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    cursor: pointer;
+  }
+
+  .modal-card {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    background: rgba(23, 5, 37, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(171, 75, 253, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-sizing: border-box;
+    z-index: 10000;
+    animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+    /* Webkit scrollbar customized */
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+    }
+  }
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    .modal-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: white;
+      margin: 0;
+      letter-spacing: 0.5px;
+    }
+
+    .close-modal-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 18px;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.12);
+        transform: scale(1.05);
+      }
+    }
+  }
+
+
+
+  .table-container {
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.015);
+    overflow: hidden;
+  }
+
+  .size-chart-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+
+    thead {
+      background: rgba(255, 255, 255, 0.04);
+      
+      th {
+        padding: 12px;
+        font-size: 10.5px;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.45);
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+    }
+
+    tbody {
+      tr {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        transition: all 0.2s ease;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        td {
+          padding: 12px;
+          font-size: 13px;
+          color: rgba(255, 255, 255, 0.8);
+          font-weight: 500;
+        }
+
+        .us-cell {
+          font-weight: 700;
+          color: white;
+        }
+
+        .length-cell {
+          font-family: monospace;
+          font-size: 12.5px;
+        }
+
+        &.highlighted-row {
+          background: rgba(171, 75, 253, 0.15);
+          position: relative;
+          box-shadow: inset 0 0 10px rgba(171, 75, 253, 0.1);
+
+          td {
+            color: white;
+            font-weight: 700;
+            
+            &.length-cell {
+              color: #ff56ab;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .instructions-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.015);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 16px;
+
+    .instructions-title {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: white;
+      margin: 0;
+      letter-spacing: 0.3px;
+    }
+
+    .instructions-list {
+      margin: 0;
+      padding-left: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+
+      li {
+        font-size: 11.5px;
+        color: rgba(255, 255, 255, 0.55);
+        line-height: 1.45;
+      }
+    }
+
+    .fit-tip {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.5);
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 10px;
+      margin-top: 4px;
+      line-height: 1.45;
+
+      .tip-highlight {
+        color: #ff56ab;
+        font-weight: 700;
+        margin-right: 4px;
+      }
+    }
+  }
+}
+
+@keyframes modalSlideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }

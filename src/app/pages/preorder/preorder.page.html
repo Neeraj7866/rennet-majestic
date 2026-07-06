@@ -26,7 +26,7 @@
     <div class="selection-section">
       <div class="section-label-row">
         <span class="section-label">SELECT KID'S SIZE</span>
-        <a class="size-guide-link">Size Guide</a>
+        <a class="size-guide-link" (click)="openSizeGuide($event)">Size Guide</a>
       </div>
       <div class="sizes-grid">
         <button 
@@ -56,26 +56,19 @@
     <!-- Pricing Summary Card -->
     <div class="pricing-card">
       <div class="price-row">
-        <span class="price-label">Preorder Deposit</span>
-        <span class="price-val">₹{{ depositPrice * quantity }}.00</span>
+        <span class="price-label">Total Amount</span>
+        <span class="price-val">₹2499.00</span>
       </div>
       <div class="price-row">
-        <span class="price-label">Estimated Shipping</span>
-        <span class="price-val shipping-time">October 2024</span>
+        <span class="price-label">Preorder Deposit</span>
+        <span class="price-val shipping-time">₹99.00</span>
       </div>
       
       <div class="price-divider"></div>
       
       <div class="price-row total-row">
-        <span class="price-label">Total Due Today</span>
-        <span class="price-val total-val">₹{{ totalPrice }}.00</span>
-      </div>
-
-      <div class="badge-row">
-        <div class="shipment-badge">
-          <ion-icon name="chevron-forward-outline" class="badge-icon"></ion-icon>
-          BATCH 1 SHIPMENTS
-        </div>
+        <span class="price-label">Pay On Delivery</span>
+        <span class="price-val total-val">₹2400.00</span>
       </div>
     </div>
 
@@ -95,7 +88,7 @@
     <!-- Action Button & Footer -->
     <div class="action-footer">
       <button class="reserve-btn" (click)="reserveNow()">
-        Reserve Now
+        Reserve Now at ₹99
       </button>
       
       <div class="security-note">
@@ -104,6 +97,79 @@
       </div>
     </div>
 
+  </div>
+
+  <!-- Size Guide Modal -->
+  <div class="size-guide-modal-container" *ngIf="showSizeGuide">
+    <div class="modal-backdrop" (click)="closeSizeGuide()"></div>
+    <div class="modal-card">
+      <header class="modal-header">
+        <h2 class="modal-title">Size Guide</h2>
+        <button class="close-modal-btn" (click)="closeSizeGuide()" aria-label="Close Modal">
+          <ion-icon name="close-outline"></ion-icon>
+        </button>
+      </header>
+
+      <!-- Size Table -->
+      <div class="table-container">
+        <table class="size-chart-table">
+          <thead>
+            <tr>
+              <th>US Size</th>
+              <th>UK Size</th>
+              <th>EU Size</th>
+              <th>Foot Length</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr [class.highlighted-row]="selectedSize === 7">
+              <td class="us-cell">7</td>
+              <td>6</td>
+              <td>23</td>
+              <td class="length-cell">14.0 cm</td>
+            </tr>
+            <tr [class.highlighted-row]="selectedSize === 8">
+              <td class="us-cell">8</td>
+              <td>7</td>
+              <td>24</td>
+              <td class="length-cell">14.6 cm</td>
+            </tr>
+            <tr [class.highlighted-row]="selectedSize === 9">
+              <td class="us-cell">9</td>
+              <td>8</td>
+              <td>25</td>
+              <td class="length-cell">15.6 cm</td>
+            </tr>
+            <tr [class.highlighted-row]="selectedSize === 10">
+              <td class="us-cell">10</td>
+              <td>9</td>
+              <td>27</td>
+              <td class="length-cell">16.5 cm</td>
+            </tr>
+            <tr [class.highlighted-row]="selectedSize === 11">
+              <td class="us-cell">11</td>
+              <td>10</td>
+              <td>28</td>
+              <td class="length-cell">17.1 cm</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Quick How-To Instructions -->
+      <div class="instructions-section">
+        <h3 class="instructions-title">How to Measure</h3>
+        <ol class="instructions-list">
+          <li>Place a piece of paper on the floor next to a wall.</li>
+          <li>Have your child stand on the paper with heel against the wall.</li>
+          <li>Mark the longest part of their foot on the paper with a pencil.</li>
+          <li>Measure the distance from the wall to the mark.</li>
+        </ol>
+        <div class="fit-tip">
+          <span class="tip-highlight">Pro-Tip:</span> If between sizes, choose the larger size for room to grow.
+        </div>
+      </div>
+    </div>
   </div>
 
 </ion-content>

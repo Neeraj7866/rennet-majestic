@@ -9,24 +9,6 @@
 
     <!-- 2. Grid: Features and Carousel Slider -->
     <div class="hero-grid">
-      
-      <!-- Column 1: Left Features -->
-      <div class="features-col left-features">
-        <div class="feature-item" id="feat-gps">
-          <div class="feature-icon-wrap">
-            <ion-icon name="location-outline"></ion-icon>
-          </div>
-          <span class="feature-label">REAL-TIME<br>GPS</span>
-        </div>
-        
-        <div class="feature-item" id="feat-battery">
-          <div class="feature-icon-wrap">
-            <ion-icon name="flash-outline"></ion-icon>
-          </div>
-          <span class="feature-label">LONG BATTERY</span>
-        </div>
-      </div>
-
       <!-- Column 2: Carousel Box -->
       <div class="carousel-box">
         
@@ -35,8 +17,44 @@
             <ion-icon name="chevron-back-outline"></ion-icon>
           </button>
           
-          <div class="slide-card" [class.is-thumb]="slides[currentSlide].type === 'thumb'">
+          <div class="slide-card" 
+               [class.is-feature-slide]="currentSlide === 1">
+            <!-- Left Features (inside card box) -->
+            <div class="features-col left-features" [class.visible]="currentSlide === 1">
+              <div class="feature-item" id="feat-gps">
+                <div class="feature-icon-wrap">
+                  <ion-icon name="location-outline"></ion-icon>
+                </div>
+                <span class="feature-label">REAL-TIME<br>GPS</span>
+              </div>
+              
+              <div class="feature-item" id="feat-battery">
+                <div class="feature-icon-wrap">
+                  <ion-icon name="flash-outline"></ion-icon>
+                </div>
+                <span class="feature-label">LONG BATTERY</span>
+              </div>
+            </div>
+
+            <!-- Shoe Image -->
             <img [src]="slides[currentSlide].image" [alt]="slides[currentSlide].name" class="slide-img" id="img-active-slide">
+
+            <!-- Right Features (inside card box) -->
+            <div class="features-col right-features" [class.visible]="currentSlide === 1">
+              <div class="feature-item" id="feat-waterproof">
+                <div class="feature-icon-wrap">
+                  <ion-icon name="water-outline"></ion-icon>
+                </div>
+                <span class="feature-label">WATERPROOF</span>
+              </div>
+              
+              <div class="feature-item" id="feat-lining">
+                <div class="feature-icon-wrap">
+                  <ion-icon name="shield-outline"></ion-icon>
+                </div>
+                <span class="feature-label">SECURE LINING</span>
+              </div>
+            </div>
           </div>
           
           <button class="nav-arrow right" (click)="nextSlide()" id="btn-next-slide" aria-label="Next Slide">
@@ -65,24 +83,25 @@
         </div>
 
       </div>
+    </div>
 
-      <!-- Column 3: Right Features -->
-      <div class="features-col right-features">
-        <div class="feature-item" id="feat-waterproof">
-          <div class="feature-icon-wrap">
-            <ion-icon name="water-outline"></ion-icon>
-          </div>
-          <span class="feature-label">WATERPROOF</span>
-        </div>
-        
-        <div class="feature-item" id="feat-lining">
-          <div class="feature-icon-wrap">
-            <ion-icon name="shield-outline"></ion-icon>
-          </div>
-          <span class="feature-label">SECURE LINING</span>
-        </div>
+    <!-- Pricing Summary Card -->
+    <div class="pricing-card">
+      <div class="price-row">
+        <span class="price-label">Price</span>
+        <span class="price-val">₹2499.00</span>
       </div>
-
+      <div class="price-row">
+        <span class="price-label">Estimated Shipping</span>
+        <span class="price-val shipping-time">October 2024</span>
+      </div>
+      
+      <div class="price-divider"></div>
+      
+      <div class="price-row total-row">
+        <span class="price-label">Preorder Deposit</span>
+        <span class="price-val total-val">₹99.00</span>
+      </div>
     </div>
 
     <!-- 3. Product Titles & Badges -->

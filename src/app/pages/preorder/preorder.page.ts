@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -13,7 +13,8 @@ import {
   removeOutline,
   addOutline,
   shieldCheckmarkOutline,
-  lockClosedOutline
+  lockClosedOutline,
+  closeOutline
 } from 'ionicons/icons';
 
 @Component({
@@ -28,25 +29,29 @@ import {
     FormsModule
   ]
 })
-export class PreorderPage implements OnInit {
+export class PreorderPage {
   selectedSize = 9;
   sizes = [7, 8, 9, 10, 11];
   quantity = 1;
   depositPrice = 2499;
   totalPrice = 2499;
 
-  constructor(private router: Router) {
+  // Size Guide Modal properties
+  showSizeGuide = false;
+
+  private router = inject(Router);
+
+  constructor() {
     addIcons({
       chevronBackOutline,
       chevronForwardOutline,
       removeOutline,
       addOutline,
       shieldCheckmarkOutline,
-      lockClosedOutline
+      lockClosedOutline,
+      closeOutline
     });
   }
-
-  ngOnInit() {}
 
   selectSize(size: number) {
     this.selectedSize = size;
@@ -79,5 +84,15 @@ export class PreorderPage implements OnInit {
         quantity: this.quantity
       }
     });
+  }
+
+  // Size Guide handlers
+  openSizeGuide(event: Event) {
+    event.preventDefault();
+    this.showSizeGuide = true;
+  }
+
+  closeSizeGuide() {
+    this.showSizeGuide = false;
   }
 }
